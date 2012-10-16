@@ -1,0 +1,32 @@
+defaults: &defaults
+  host: localhost
+  allow_dynamic_fields: false
+  pool_size: 32
+  max_retries_on_connection_failure: 3
+  identity_map_enabled: false
+
+development:
+  <<: *defaults
+  host: <%= ENV['MONGOID_HOST'] || "localhost" %>
+  database: merchant_portal_development
+
+qa:
+  <<: *defaults
+  host: <%= ENV['MONGOID_HOST'] || "localhost" %>
+  database: merchant_portal_qa
+
+staging:
+  <<: *defaults
+  host: <%= ENV['MONGOID_HOST'] || "localhost" %>
+  database: merchant_portal_staging
+
+test:
+  <<: *defaults
+  database: merchant_portal_test
+  logger: false
+
+production:
+  <<: *defaults
+  host: <%= ENV['MONGOID_HOST'] %>
+  database: merchant_portal
+  logger: true
